@@ -4,7 +4,7 @@ import { SessionProvider } from "next-auth/react";
 import type { AppType } from "next/app";
 import type { Session } from "next-auth";
 import { trpc } from "../utils/trpc";
-import "overlayscrollbars/css/OverlayScrollbars.css";
+import "overlayscrollbars/overlayscrollbars.css";
 import "../styles/globals.css";
 
 const CustomApp: AppType<{ session: Session }> = ({

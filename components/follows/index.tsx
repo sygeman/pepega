@@ -1,6 +1,7 @@
-import { trpc } from '../../utils/trpc';
-import Link from 'next/link';
-import { OverlayScrollbarsComponent } from 'overlayscrollbars-react';
+import { trpc } from "../../utils/trpc";
+import Link from "next/link";
+import { OverlayScrollbarsComponent } from "overlayscrollbars-react";
+import Image from "next/image";
 
 export function Follows() {
   const { data } = trpc.follow.list.useQuery(undefined, {
@@ -20,7 +21,9 @@ export function Follows() {
             passHref
             className="flex w-full h-10 items-center hover:bg-background"
           >
-            <img
+            <Image
+              width={24}
+              height={24}
               className="h-6 w-6 mx-4 rounded-full"
               src={channel.profile_image_url}
               alt=""

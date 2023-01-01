@@ -1,27 +1,18 @@
-import React, { useCallback } from "react";
-import { OverlayScrollbarsComponent } from "overlayscrollbars-react";
+import React, { useEffect } from "react";
+import { useOverlayScrollbars } from "overlayscrollbars-react";
 
 // @ts-ignore
 export const ScrollerBase = ({ children, className, style, ...props }, ref) => {
-  const refSetter = useCallback(
-    // @ts-ignore
-    (scrollbarsRef) => {
-      if (scrollbarsRef) {
-        ref.current = scrollbarsRef.osInstance().getElements().viewport;
-      }
-    },
-    [ref]
-  );
+  const [initialize] = useOverlayScrollbars({ defer: true });
+
+  useEffect(() => {
+    initialize(ref.current);
+  }, [initialize, ref]);
 
   return (
-    <OverlayScrollbarsComponent
-      ref={refSetter}
-      className={className}
-      style={style}
-      {...props}
-    >
+    <div ref={ref} className={className} style={style} {...props}>
       {children}
-    </OverlayScrollbarsComponent>
+    </div>
   );
 };
 
