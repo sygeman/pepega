@@ -22,6 +22,7 @@ export const Clips = ({ userId }: { userId?: string }) => {
   const { data, fetchNextPage } = trpc.clip.list.useInfiniteQuery(
     { userId },
     {
+      // @ts-ignore
       getNextPageParam: (lastPage) => ({ cursor: lastPage.cursor, userId }),
     }
   );
@@ -45,6 +46,7 @@ export const Clips = ({ userId }: { userId?: string }) => {
     setInnerWidth(gridWidth);
   }, [width, maxOnRow, elementWidth]);
 
+  // @ts-ignore
   const clips = data?.pages.map((p) => p.clips).flat(1) || [];
   const currentCount = clips.length;
 

@@ -23,14 +23,14 @@ specifiers:
   eslint-config-next: 13.1.1
   next: 13.1.1
   next-auth: 4.18.7
-  overlayscrollbars: 2.0.2
+  overlayscrollbars: 2.0.3
   overlayscrollbars-react: 0.5.0
   postcss: 8.4.20
   prisma: 4.8.0
   react: 18.2.0
   react-dom: 18.2.0
   react-resize-detector: 7.1.2
-  react-virtuoso: 3.1.5
+  react-virtuoso: 4.0.1
   tailwindcss: 3.2.4
   typescript: 4.9.4
   zod: 3.20.2
@@ -52,12 +52,12 @@ dependencies:
   date-fns: 2.29.3
   next: 13.1.1_biqbaboplfbrettd7655fr4n2y
   next-auth: 4.18.7_q76c2b4vyoegvsbrcwkfvimnai
-  overlayscrollbars: 2.0.2
-  overlayscrollbars-react: 0.5.0_evz5iqrgux5swtcp4hfac44wzi
+  overlayscrollbars: 2.0.3
+  overlayscrollbars-react: 0.5.0_zkbntqz6lsvwr4f42dmhn2ssde
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
   react-resize-detector: 7.1.2_biqbaboplfbrettd7655fr4n2y
-  react-virtuoso: 3.1.5_biqbaboplfbrettd7655fr4n2y
+  react-virtuoso: 4.0.1_biqbaboplfbrettd7655fr4n2y
   zod: 3.20.2
 
 devDependencies:
@@ -517,20 +517,6 @@ packages:
       '@typescript-eslint/types': 5.47.0
       eslint-visitor-keys: 3.3.0
     dev: true
-
-  /@virtuoso.dev/react-urx/0.2.13_react@18.2.0:
-    resolution: {integrity: sha512-MY0ugBDjFb5Xt8v2HY7MKcRGqw/3gTpMlLXId2EwQvYJoC8sP7nnXjAxcBtTB50KTZhO0SbzsFimaZ7pSdApwA==}
-    engines: {node: '>=10'}
-    peerDependencies:
-      react: '>=16'
-    dependencies:
-      '@virtuoso.dev/urx': 0.2.13
-      react: 18.2.0
-    dev: false
-
-  /@virtuoso.dev/urx/0.2.13:
-    resolution: {integrity: sha512-iirJNv92A1ZWxoOHHDYW/1KPoi83939o83iUBQHIim0i3tMeSKEh+bxhJdTHQ86Mr4uXx9xGUTq69cp52ZP8Xw==}
-    dev: false
 
   /acorn-jsx/5.3.2_acorn@8.8.1:
     resolution: {integrity: sha512-rq9s+JNhf0IChjtDXxllJ7g41oZk5SlXtp0LHwyA5cejwn7vKmKp4pPri6YEePv2PU65sAsegbXtIinmDFDXgQ==}
@@ -2076,18 +2062,18 @@ packages:
       word-wrap: 1.2.3
     dev: true
 
-  /overlayscrollbars-react/0.5.0_evz5iqrgux5swtcp4hfac44wzi:
+  /overlayscrollbars-react/0.5.0_zkbntqz6lsvwr4f42dmhn2ssde:
     resolution: {integrity: sha512-uCNTnkfWW74veoiEv3kSwoLelKt4e8gTNv65D771X3il0x5g5Yo0fUbro7SpQzR9yNgi23cvB2mQHTTdQH96pA==}
     peerDependencies:
       overlayscrollbars: ^2.0.0
       react: '>=16.8.0'
     dependencies:
-      overlayscrollbars: 2.0.2
+      overlayscrollbars: 2.0.3
       react: 18.2.0
     dev: false
 
-  /overlayscrollbars/2.0.2:
-    resolution: {integrity: sha512-H7y9Y5UUOO5nVF5bHLOYIqJp1CpKax/lNPWbos+r3uukTvhfSBrs7ICHsRPXGQ6OXPUxuk9IL6T7eQGnmm1uMg==}
+  /overlayscrollbars/2.0.3:
+    resolution: {integrity: sha512-boOkJFER1Tc21sxF4a7ghGl+ETV3WtP7YgsUyDPo1VTHUIPdQLfnTzMyOOdMkKkVcpJOYMKwwr4m+saCtgawCg==}
     dev: false
 
   /p-limit/3.1.0:
@@ -2316,15 +2302,13 @@ packages:
       react: 18.2.0
     dev: false
 
-  /react-virtuoso/3.1.5_biqbaboplfbrettd7655fr4n2y:
-    resolution: {integrity: sha512-Dwf7SGr73UAahfcQNIND+c+MtCb0PeHu+QTZ5ptR7oXxQkupfHXEKGwEDF5lDkLqdGxm+yH4uh/IFCqMKxudJw==}
+  /react-virtuoso/4.0.1_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-6zdv46NPrJK3ZtjJD/BVggbLv4SASuWjHkS+Wuf3SjLenE7I9qH27D/atKfF8rLl+C3nOw0rC5V5oMKHVfZe2w==}
     engines: {node: '>=10'}
     peerDependencies:
       react: '>=16 || >=17 || >= 18'
       react-dom: '>=16 || >=17 || >= 18'
     dependencies:
-      '@virtuoso.dev/react-urx': 0.2.13_react@18.2.0
-      '@virtuoso.dev/urx': 0.2.13
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
     dev: false
