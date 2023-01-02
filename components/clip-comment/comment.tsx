@@ -1,6 +1,5 @@
-import { XMarkIcon } from '@heroicons/react/20/solid';
-import { useAccess } from '../../utils/use-access';
-import { Avatar } from '../avatar';
+import { useAccess } from "../../utils/use-access";
+import { Avatar } from "../avatar";
 
 export const ClipComment = ({
   id,
@@ -19,7 +18,7 @@ export const ClipComment = ({
   };
 
   const [{ allow: isAllowRemoveClipComment }] = useAccess((currentUser) => {
-    return currentUser.role === 'Mod' || currentUser.role === 'Admin';
+    return currentUser.role === "Mod" || currentUser.role === "Admin";
   });
 
   return (
@@ -40,7 +39,7 @@ export const ClipComment = ({
               className="p-1 bg-background rounded"
               onClick={removeClipComment}
             >
-              <XMarkIcon className="h-3 text-white/50" />
+              Remove
             </button>
           )}
         </div>

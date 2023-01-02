@@ -1,6 +1,6 @@
-import { ArrowRightOnRectangleIcon } from '@heroicons/react/20/solid';
-import { signOut, useSession } from 'next-auth/react';
-import { Avatar } from '../../components/avatar';
+import Image from "next/image";
+import { signOut, useSession } from "next-auth/react";
+import { Avatar } from "../../components/avatar";
 
 export const User = () => {
   const { data } = useSession();
@@ -20,7 +20,7 @@ export const User = () => {
         className="hover:bg-background/50 p-2 mx-2 rounded-lg"
         onClick={() => signOut()}
       >
-        <ArrowRightOnRectangleIcon className="h-4" />
+        <Image src="/icons/exit.svg" height={16} width={16} alt="" />
       </button>
     </div>
   );

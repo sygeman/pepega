@@ -4,7 +4,7 @@ export default function Document() {
   return (
     <Html>
       <Head>
-        <link rel="icon" type="image/png" href={`/favicon.png`} />
+        <link rel="icon" type="image/png" href="/favicon.png" />
         <link rel="preconnect" href="https://fonts.gstatic.com" />
         <link
           href="https://fonts.googleapis.com/css?family=Roboto:400,500&subset=cyrillic-ext&display=swap"

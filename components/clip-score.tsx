@@ -1,5 +1,5 @@
-import { PlusSmallIcon, MinusSmallIcon } from "@heroicons/react/20/solid";
 import React from "react";
+import Image from "next/image";
 import { trpc } from "../utils/trpc";
 import { useRouter } from "next/router";
 import { useAccess } from "../utils/use-access";
@@ -73,7 +73,7 @@ export function ClipScore({ clipId }: ClipScoreProps) {
         {loading ? (
           <div className="w-4 h-4" />
         ) : (
-          <PlusSmallIcon className="h-4" />
+          <Image src="/icons/plus-small.svg" alt="" height={16} width={16} />
         )}
       </ScoreButton>
       <div className="flex px-4 -mx-2 z-10 items-center bg-twitch transition rounded-lg text-sm font-medium">
@@ -83,7 +83,7 @@ export function ClipScore({ clipId }: ClipScoreProps) {
         {loading ? (
           <div className="w-4 h-4" />
         ) : (
-          <MinusSmallIcon className="h-4" />
+          <Image src="/icons/minus-small.svg" alt="" height={16} width={16} />
         )}
       </ScoreButton>
     </div>

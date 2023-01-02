@@ -1,16 +1,12 @@
 import clsx from "clsx";
 import React, { useState } from "react";
-
-import { HomeIcon } from "@heroicons/react/20/solid";
 import { AuthModal } from "./auth-modal";
 import { Follows } from "../components/follows";
 import { CreateClipModal } from "../components/clip/create-modal";
 import { ClipModal } from "../components/clip/modal";
-import { LeftMenuItem } from "./left-menu-item";
 import { UserBox } from "./user";
 import { Logo } from "./logo";
 import { useAccess } from "../utils/use-access";
-import Head from "next/head";
 
 interface MainLayoutProps {
   children?: React.ReactNode;
@@ -22,9 +18,6 @@ export const MainLayout = ({ children }: MainLayoutProps) => {
 
   return (
     <div className={`flex flex-col h-full overflow-hidden relative`}>
-      <Head>
-        <link rel="icon" type="image/png" href={`/favicon.png`} />
-      </Head>
       <div className="absolute top-0 left-0 w-full h-full" />
       <div className="absolute top-0 left-0 w-full h-full bg-background/95">
         <ClipModal />
@@ -41,12 +34,6 @@ export const MainLayout = ({ children }: MainLayoutProps) => {
               >
                 <div className="flex flex-col w-full flex-1">
                   <Logo />
-                  <LeftMenuItem
-                    route="/"
-                    equal
-                    icon={<HomeIcon className="h-4" />}
-                    title="Главная"
-                  />
                   {isUser && <Follows />}
                 </div>
 
@@ -71,7 +58,6 @@ export const MainLayout = ({ children }: MainLayoutProps) => {
           </div>
         </div>
       </div>
-      <div id="root-modal" />
     </div>
   );
 };
