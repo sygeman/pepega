@@ -1,7 +1,7 @@
-import Image from 'next/image';
-import { signIn } from 'next-auth/react';
-import { useModal } from '../../utils/use-modal';
-import { Modal } from '../modal';
+import Image from "next/image";
+import { signIn } from "next-auth/react";
+import { useModal } from "../utils/use-modal";
+import { Modal } from "../components/modal";
 
 export const AuthModal = () => {
   const modalProps = useModal();
@@ -12,7 +12,7 @@ export const AuthModal = () => {
         <div className="flex flex-col px-4 py-2">
           <button
             className="btn-social btn-social-twitch"
-            onClick={() => signIn('twitch')}
+            onClick={() => signIn("twitch")}
           >
             <Image
               alt=""

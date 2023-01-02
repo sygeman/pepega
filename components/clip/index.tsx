@@ -1,11 +1,11 @@
-import { FC, useEffect } from 'react';
-import dynamic from 'next/dynamic';
-import { useAccess } from '../../utils/use-access';
-import { ClipScore } from '../clip-score';
-import { ClipComments } from '../clip-comment';
+import { FC, useEffect } from "react";
+import dynamic from "next/dynamic";
+import { useAccess } from "../../utils/use-access";
+import { ClipScore } from "../clip-score";
+import { ClipComments } from "../clip-comment";
 
 const TwitchClipPlayer = dynamic(
-  () => import('../clip-player').then((m) => m.TwitchClipPlayer),
+  () => import("../twitch-clip-player").then((m) => m.TwitchClipPlayer),
   { ssr: false }
 );
 
@@ -14,7 +14,7 @@ export interface ClipProps {
   autoPlay?: boolean;
 }
 
-export const Clip: FC<ClipProps> = ({ clipId = '', autoPlay }) => {
+export const Clip: FC<ClipProps> = ({ clipId = "", autoPlay }) => {
   const [{ allow: isUser }] = useAccess();
 
   useEffect(() => {

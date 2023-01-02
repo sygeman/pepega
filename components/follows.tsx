@@ -1,4 +1,4 @@
-import { trpc } from "../../utils/trpc";
+import { trpc } from "../utils/trpc";
 import Link from "next/link";
 import { OverlayScrollbarsComponent } from "overlayscrollbars-react";
 import Image from "next/image";

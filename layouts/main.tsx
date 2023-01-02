@@ -1,14 +1,16 @@
-import clsx from 'clsx';
-import React, { useState } from 'react';
-import { HomeIcon } from '@heroicons/react/20/solid';
-import { AuthModal } from '../components/auth';
-import { Follows } from '../components/follows';
-import { CreateClipModal } from '../components/clip/create-modal';
-import { ClipModal } from '../components/clip/modal';
-import { LeftMenuItem } from './left-menu-item';
-import { UserBox } from './user';
-import { Logo } from './logo';
-import { useAccess } from '../utils/use-access';
+import clsx from "clsx";
+import React, { useState } from "react";
+
+import { HomeIcon } from "@heroicons/react/20/solid";
+import { AuthModal } from "./auth-modal";
+import { Follows } from "../components/follows";
+import { CreateClipModal } from "../components/clip/create-modal";
+import { ClipModal } from "../components/clip/modal";
+import { LeftMenuItem } from "./left-menu-item";
+import { UserBox } from "./user";
+import { Logo } from "./logo";
+import { useAccess } from "../utils/use-access";
+import Head from "next/head";
 
 interface MainLayoutProps {
   children?: React.ReactNode;
@@ -19,7 +21,10 @@ export const MainLayout = ({ children }: MainLayoutProps) => {
   const [{ allow: isUser }] = useAccess();
 
   return (
-    <div className="flex flex-col h-full overflow-hidden relative">
+    <div className={`flex flex-col h-full overflow-hidden relative`}>
+      <Head>
+        <link rel="icon" type="image/png" href={`/favicon.png`} />
+      </Head>
       <div className="absolute top-0 left-0 w-full h-full" />
       <div className="absolute top-0 left-0 w-full h-full bg-background/95">
         <ClipModal />
@@ -30,8 +35,8 @@ export const MainLayout = ({ children }: MainLayoutProps) => {
             <div className="h-full flex">
               <div
                 className={clsx(
-                  'w-[240px] flex flex-col absolute top-0 h-full z-[100] transition-all delay-150 bg-surface',
-                  leftMenuIsOpen ? 'left-0' : 'left-[-240px] sm:left-0'
+                  "w-[240px] flex flex-col absolute top-0 h-full z-[100] transition-all delay-150 bg-surface",
+                  leftMenuIsOpen ? "left-0" : "left-[-240px] sm:left-0"
                 )}
               >
                 <div className="flex flex-col w-full flex-1">
@@ -50,7 +55,7 @@ export const MainLayout = ({ children }: MainLayoutProps) => {
               <div
                 id="layoutContent"
                 className={clsx(
-                  'flex flex-col w-full transition-all delay-150 sm:pl-[240px]'
+                  "flex flex-col w-full transition-all delay-150 sm:pl-[240px]"
                 )}
               >
                 {children}
@@ -58,14 +63,15 @@ export const MainLayout = ({ children }: MainLayoutProps) => {
             </div>
             <div
               className={clsx(
-                'absolute left-0 top-0 w-full h-full z-50 bg-background/95 transition-all delay-150',
-                leftMenuIsOpen ? 'sm:hidden' : 'hidden'
+                "absolute left-0 top-0 w-full h-full z-50 bg-background/95 transition-all delay-150",
+                leftMenuIsOpen ? "sm:hidden" : "hidden"
               )}
               onClick={() => setLeftMenuIsOpen(false)}
             />
           </div>
         </div>
       </div>
+      <div id="root-modal" />
     </div>
   );
 };

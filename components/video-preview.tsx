@@ -1,11 +1,15 @@
-export const VideoPreview = ({
-  onClick,
-  cover,
-  date,
-}: {
+import React from "react";
+
+export interface VideoPreviewProps {
   onClick?: () => void;
   cover?: string;
   date?: string;
+}
+
+export const VideoPreview: React.FC<VideoPreviewProps> = ({
+  onClick,
+  cover,
+  date,
 }) => (
   <div className="aspect-video relative">
     <div className="absolute top-0 left-0 w-full h-full">

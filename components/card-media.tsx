@@ -1,5 +1,5 @@
 import { FC, ReactNode } from "react";
-import { shortNumbers } from "../../utils/count";
+import { shortNumbers } from "../utils/count";
 
 interface IProps {
   media?: ReactNode;

@@ -1,16 +1,15 @@
-import { PlusSmallIcon, MinusSmallIcon } from '@heroicons/react/20/solid';
-import React from 'react';
-import { trpc } from '../../utils/trpc';
-import { useRouter } from 'next/router';
-import { useAccess } from '../../utils/use-access';
+import { PlusSmallIcon, MinusSmallIcon } from "@heroicons/react/20/solid";
+import React from "react";
+import { trpc } from "../utils/trpc";
+import { useRouter } from "next/router";
+import { useAccess } from "../utils/use-access";
 
-const ScoreButton = ({
-  action,
-  children,
-}: {
+export interface ScoreButtonProps {
   action: () => void;
   children?: React.ReactNode;
-}) => {
+}
+
+const ScoreButton: React.FC<ScoreButtonProps> = ({ action, children }) => {
   const router = useRouter();
   const [{ allow: isUser }] = useAccess();
 

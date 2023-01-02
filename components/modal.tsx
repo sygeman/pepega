@@ -1,12 +1,10 @@
-import React, { Fragment, useRef } from 'react';
-import { Dialog, Transition } from '@headlessui/react';
+import React, { Fragment, useRef } from "react";
+import { Dialog, Transition } from "@headlessui/react";
 
 export type ModalProps = {
   id: string;
   isOpen: (id: string) => boolean;
   onClose: (id: string) => void;
-  title?: string;
-  minimal?: boolean;
   children?: React.ReactNode;
 };
 
@@ -14,8 +12,6 @@ export const Modal: React.FC<ModalProps> = ({
   id,
   isOpen,
   onClose,
-  minimal = false,
-  title = '',
   children,
 }) => {
   const completeButtonRef = useRef(null);

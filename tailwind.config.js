@@ -128,7 +128,7 @@ module.exports = {
             backgroundColor: theme("colors.primary.light"),
           },
         },
-        ".btn-social": {
+        ".btn-social-twitch": {
           fontWeight: theme("fontWeight.medium"),
           margin: `${theme("spacing.1")} 0`,
           padding: `${theme("spacing.2")} ${theme("spacing.4")}`,
@@ -137,21 +137,12 @@ module.exports = {
           width: theme("width.w-full"),
           position: "relative",
           borderRadius: theme("borderRadius.DEFAULT"),
+          backgroundColor: theme(`colors.twitch.DEFAULT`),
+          "&:hover": {
+            backgroundColor: theme(`colors.twitch.light`),
+          },
         },
       };
-
-      ["twitch", "spotify"].forEach((c) => {
-        addComponents([
-          {
-            [`.btn-social-${c}`]: {
-              backgroundColor: theme(`colors.${c}.DEFAULT`),
-              "&:hover": {
-                backgroundColor: theme(`colors.${c}.light`),
-              },
-            },
-          },
-        ]);
-      });
 
       addComponents(buttons);
     }),

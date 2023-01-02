@@ -1,7 +1,7 @@
-import { useRouter } from 'next/router';
-import { useModal } from '../../utils/use-modal';
-import { Clip } from './index';
-import { Modal } from '../modal';
+import { useRouter } from "next/router";
+import { useModal } from "../../utils/use-modal";
+import { Clip } from "./index";
+import { Modal } from "../modal";
 
 export const ClipModal = () => {
   const router = useRouter();
@@ -9,14 +9,14 @@ export const ClipModal = () => {
 
   if (!router) return null;
 
-  let clipId = '';
+  let clipId = "";
 
-  if (typeof router.query['clipId'] === 'string') {
-    clipId = router.query['clipId'];
+  if (typeof router.query["clipId"] === "string") {
+    clipId = router.query["clipId"];
   }
 
   return (
-    <Modal id="clipId" minimal {...modalProps}>
+    <Modal id="clipId" {...modalProps}>
       <div
         className="max-w-[1000px] min-w-[320px] w-[1000px] rounded overflow-hidden"
         onClick={(e) => e.stopPropagation()}

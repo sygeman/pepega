@@ -1,18 +1,18 @@
-import { useState } from 'react';
-import { useRouter } from 'next/router';
-import { Input } from '../input';
-import { trpc } from '../../utils/trpc';
-import { CoinIconGold } from '../coin-icon';
-import { TwitchClipPlayer } from '../clip-player';
-import { useModal } from '../../utils/use-modal';
-import { Modal } from '../modal';
-import { parseSource } from './parse-source';
+import { useState } from "react";
+import { useRouter } from "next/router";
+import { Input } from "../input";
+import { trpc } from "../../utils/trpc";
+import { CoinIconGold } from "../coin-icon";
+import { TwitchClipPlayer } from "../twitch-clip-player";
+import { useModal } from "../../utils/use-modal";
+import { Modal } from "../modal";
+import { parseSource } from "./parse-source";
 
 export const CreateClipModal = () => {
   const router = useRouter();
   const modalProps = useModal();
   const costCreateClip = 10;
-  const [clipId, setClipId] = useState('');
+  const [clipId, setClipId] = useState("");
 
   const increaseClipScoreMutation = trpc.clipScore.increase.useMutation();
   const increaseClipScore = (clipId: string) =>
@@ -26,7 +26,7 @@ export const CreateClipModal = () => {
     );
 
   return (
-    <Modal id="newClip" title="Предложить клип" {...modalProps}>
+    <Modal id="newClip" {...modalProps}>
       <div className="w-[600px] bg-surface p-4 rounded overflow-hidden">
         <Input
           autoFocus

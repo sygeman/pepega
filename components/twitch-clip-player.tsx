@@ -1,9 +1,13 @@
-export const TwitchClipPlayer = ({
-  sourceId,
-  autoPlay,
-}: {
+import React from "react";
+
+export interface TwitchClipPlayerProps {
   autoPlay?: boolean;
   sourceId?: string;
+}
+
+export const TwitchClipPlayer: React.FC<TwitchClipPlayerProps> = ({
+  sourceId,
+  autoPlay,
 }) => (
   <div className="aspect-video relative">
     <div className=" absolute top-0 left-0 w-full h-full">
@@ -13,7 +17,6 @@ export const TwitchClipPlayer = ({
         src={`https://clips.twitch.tv/embed?clip=${sourceId}&muted=false&autoplay=${
           autoPlay ? "true" : "false"
         }&parent=${window?.location?.hostname}`}
-        frameBorder="0"
         allowFullScreen
       />
     </div>
