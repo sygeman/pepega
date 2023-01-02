@@ -7,6 +7,7 @@ import { TwitchClipPlayer } from "../twitch-clip-player";
 import { useModal } from "../../utils/use-modal";
 import { Modal } from "../modal";
 import { parseSource } from "./parse-source";
+import { Button } from "../button";
 
 export const CreateClipModal = () => {
   const router = useRouter();
@@ -50,12 +51,9 @@ export const CreateClipModal = () => {
               <CoinIconGold /> {costCreateClip}
             </div>
           )}
-          <button
-            className="btn btn-primary"
-            onClick={() => increaseClipScore(clipId)}
-          >
+          <Button variant="primary" onClick={() => increaseClipScore(clipId)}>
             Предложить
-          </button>
+          </Button>
         </div>
       </div>
     </Modal>

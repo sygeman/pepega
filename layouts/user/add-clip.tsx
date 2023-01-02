@@ -1,6 +1,7 @@
-import Link from 'next/link';
-import { useRouter } from 'next/router';
-import { useAccess } from '../../utils/use-access';
+import Link from "next/link";
+import { useRouter } from "next/router";
+import { Button } from "../../components/button";
+import { useAccess } from "../../utils/use-access";
 
 export const AddClip = () => {
   const router = useRouter();
@@ -15,15 +16,15 @@ export const AddClip = () => {
           pathname: router.route,
           query: {
             ...router.query,
-            [isUser ? 'newClip' : 'authModal']: 1,
+            [isUser ? "newClip" : "authModal"]: 1,
           },
         }}
         passHref
         className="w-full"
       >
-        <button className="btn btn-primary w-full font-medium">
+        <Button variant="primary" className="w-full">
           Предложить клип
-        </button>
+        </Button>
       </Link>
     </div>
   );
