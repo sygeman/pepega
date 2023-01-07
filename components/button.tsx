@@ -1,8 +1,12 @@
 import clsx from "clsx";
 import React, { ButtonHTMLAttributes } from "react";
 
+export interface ButtonProps {
+  variant?: "default" | "primary";
+}
+
 export const Button: React.FC<
-  ButtonHTMLAttributes<HTMLButtonElement> & { variant?: "default" | "primary" }
+  ButtonHTMLAttributes<HTMLButtonElement> & ButtonProps
 > = ({ className, variant, ...props }) => (
   <button
     {...props}

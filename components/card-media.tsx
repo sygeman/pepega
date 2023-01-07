@@ -1,18 +1,23 @@
-import { FC, ReactNode } from "react";
+import React from "react";
 import { shortNumbers } from "../utils/count";
 
-interface IProps {
-  media?: ReactNode;
+interface CardMediaProps {
+  media?: React.ReactNode;
   avatar?: string;
   title?: string;
   description?: string;
   descriptionLink?: string;
-  overlay?: ReactNode;
+  overlay?: React.ReactNode;
   count?: number;
-  countIcon?: ReactNode;
+  countIcon?: React.ReactNode;
 }
 
-export const CardMedia: FC<IProps> = ({ media, title, overlay, count = 0 }) => (
+export const CardMedia: React.FC<CardMediaProps> = ({
+  media,
+  title,
+  overlay,
+  count = 0,
+}) => (
   <div className="flex flex-col items-center rounded overflow-hidden relative">
     <div className="relative w-full aspect-video bg-surface/50">{media}</div>
     <div className="flex bg-surface w-full h-12 px-1 text-sm">

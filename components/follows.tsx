@@ -1,7 +1,7 @@
-import { trpc } from "../utils/trpc";
 import Link from "next/link";
-import { OverlayScrollbarsComponent } from "overlayscrollbars-react";
 import Image from "next/image";
+import { OverlayScrollbarsComponent } from "overlayscrollbars-react";
+import { trpc } from "../utils/trpc";
 
 export function Follows() {
   const { data } = trpc.follow.list.useQuery(undefined, {

@@ -12,6 +12,7 @@ module.exports = {
         background: "#1D1E31",
         accent: "#968A9D",
         surface: "#262841",
+        gold: "#a48b3f",
         twitch: "#6542a6",
       },
       fontFamily: false,
