@@ -1,15 +1,15 @@
 import clsx from "clsx";
 import React, { ButtonHTMLAttributes } from "react";
 
-export interface ButtonProps {
+export interface ButtonProperties {
   variant?: "default" | "primary";
 }
 
 export const Button: React.FC<
-  ButtonHTMLAttributes<HTMLButtonElement> & ButtonProps
-> = ({ className, variant, ...props }) => (
+  ButtonHTMLAttributes<HTMLButtonElement> & ButtonProperties
+> = ({ className, variant, ...properties }) => (
   <button
-    {...props}
+    {...properties}
     className={clsx(
       `inline-flex items-center justify-center rounded h-8 px-3`,
       "text-white text-sm font-medium focus:outline-none",

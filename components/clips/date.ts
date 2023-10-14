@@ -1,25 +1,22 @@
-import formatDistanceToNow from 'date-fns/formatDistanceToNow';
-import locale from 'date-fns/locale/en-US';
+import formatDistanceToNow from "date-fns/formatDistanceToNow";
+import locale from "date-fns/locale/en-US";
 
 export const dateDistanceInWordsToNow = (date: any) => {
-  let numDate;
+  let numberDate;
 
   if (Number.isInteger(date)) {
-    numDate = date;
-  } else if (typeof date === 'string') {
-    const parsedDate = parseInt(date, 10);
+    numberDate = date;
+  } else if (typeof date === "string") {
+    const parsedDate = Number.parseInt(date, 10);
 
-    if (
+    numberDate =
       Number.isFinite(parsedDate) &&
       parsedDate.toString().length === date.length
-    ) {
-      numDate = parsedDate;
-    } else {
-      numDate = new Date(date);
-    }
+        ? parsedDate
+        : new Date(date);
   }
 
-  if (!numDate) return '';
+  if (!numberDate) return "";
 
-  return formatDistanceToNow(numDate, { locale, addSuffix: true });
+  return formatDistanceToNow(numberDate, { locale, addSuffix: true });
 };

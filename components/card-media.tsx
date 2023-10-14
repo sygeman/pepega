@@ -1,7 +1,8 @@
 import React from "react";
-import { shortNumbers } from "../utils/count";
 
-interface CardMediaProps {
+import { shortNumbers } from "@/utils/count";
+
+interface CardMediaProperties {
   media?: React.ReactNode;
   avatar?: string;
   title?: string;
@@ -12,7 +13,7 @@ interface CardMediaProps {
   countIcon?: React.ReactNode;
 }
 
-export const CardMedia: React.FC<CardMediaProps> = ({
+export const CardMedia: React.FC<CardMediaProperties> = ({
   media,
   title,
   overlay,

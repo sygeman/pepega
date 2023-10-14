@@ -1,14 +1,17 @@
-import { useRouter } from "next/router";
+"use client";
+import { useInfiniteQuery } from "@tanstack/react-query";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useResizeDetector } from "react-resize-detector";
 import { VirtuosoGrid } from "react-virtuoso";
+
 import { CardMedia } from "../card-media";
 import { VideoPreview } from "../video-preview";
 import { dateDistanceInWordsToNow } from "./date";
-import { trpc } from "../../utils/trpc";
 import { Scroller } from "./scrollbar";
 
-export const Clips = ({ userId }: { userId?: string }) => {
+export const Clips = ({ clips }: { clips: any[] }) => {
   const maxOnRow = 6;
   const elementWidth = 320;
 
@@ -18,14 +21,6 @@ export const Clips = ({ userId }: { userId?: string }) => {
     handleHeight: false,
   });
   const [innerWidth, setInnerWidth] = useState(0);
-
-  const { data, fetchNextPage } = trpc.clip.list.useInfiniteQuery(
-    { userId },
-    {
-      // @ts-ignore
-      getNextPageParam: (lastPage) => ({ cursor: lastPage.cursor, userId }),
-    }
-  );
 
   useEffect(() => {
     const containerWidth = width || 0;
@@ -46,8 +41,6 @@ export const Clips = ({ userId }: { userId?: string }) => {
     setInnerWidth(gridWidth);
   }, [width, maxOnRow, elementWidth]);
 
-  // @ts-ignore
-  const clips = data?.pages.map((p) => p.clips).flat(1) || [];
   const currentCount = clips.length;
 
   const getClipByIndex = (index: number) => {
@@ -70,22 +63,9 @@ export const Clips = ({ userId }: { userId?: string }) => {
           media={
             <div className="absolute top-0 left-0 w-full h-full">
               {clip && (
-                <VideoPreview
-                  onClick={() =>
-                    router.push(
-                      {
-                        pathname: router.route,
-                        query: {
-                          clipId: clip.id,
-                          ...router.query,
-                        },
-                      },
-                      `/clip/${clip.id}`
-                    )
-                  }
-                  cover={clip.thumbnail_url}
-                  date={date}
-                />
+                <Link href={`/clip/${clip.id}`}>
+                  <VideoPreview cover={clip.thumbnail_url} date={date} />
+                </Link>
               )}
             </div>
           }
@@ -112,10 +92,8 @@ export const Clips = ({ userId }: { userId?: string }) => {
         components={{
           // @ts-ignore
           Scroller,
-          ScrollSeekPlaceholder: ({ index }) => getClipByIndex(index),
         }}
         itemContent={(index) => getClipByIndex(index)}
-        endReached={() => fetchNextPage()}
       />
     </div>
   );

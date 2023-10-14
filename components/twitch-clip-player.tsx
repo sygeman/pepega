@@ -1,11 +1,11 @@
 import React from "react";
 
-export interface TwitchClipPlayerProps {
+export interface TwitchClipPlayerProperties {
   autoPlay?: boolean;
   sourceId?: string;
 }
 
-export const TwitchClipPlayer: React.FC<TwitchClipPlayerProps> = ({
+export const TwitchClipPlayer: React.FC<TwitchClipPlayerProperties> = ({
   sourceId,
   autoPlay,
 }) => (

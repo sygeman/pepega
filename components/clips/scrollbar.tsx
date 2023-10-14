@@ -1,16 +1,19 @@
-import React, { useEffect } from "react";
 import { useOverlayScrollbars } from "overlayscrollbars-react";
+import React, { useEffect } from "react";
 
 // @ts-ignore
-export const ScrollerBase = ({ children, className, style, ...props }, ref) => {
+export const ScrollerBase = (
+  { children, className, style, ...properties },
+  reference
+) => {
   const [initialize] = useOverlayScrollbars({ defer: true });
 
   useEffect(() => {
-    initialize(ref.current);
-  }, [initialize, ref]);
+    initialize(reference.current);
+  }, [initialize, reference]);
 
   return (
-    <div ref={ref} className={className} style={style} {...props}>
+    <div ref={reference} className={className} style={style} {...properties}>
       {children}
     </div>
   );
