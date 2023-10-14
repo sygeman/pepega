@@ -1,18 +1,18 @@
-import * as querystring from 'querystring';
-import axios from 'axios';
-import { prisma } from './prisma';
+import * as querystring from "querystring";
+import axios from "axios";
+import { prisma } from "./prisma";
 
 const twitchConfig = {
   clientID: process.env.TWITCH_ID,
   clientSecret: process.env.TWITCH_SECRET,
   callbackURL: `${process.env.API_URL}authend/twitch`,
-  scope: 'user:read:email user:read:follows',
+  scope: "user:read:email user:read:follows",
 };
 
 export class Twitch {
   headers = {
-    'Client-ID': twitchConfig.clientID,
-    Accept: 'application/vnd.twitchtv.v5+json',
+    "Client-ID": twitchConfig.clientID,
+    Accept: "application/vnd.twitchtv.v5+json",
   };
 
   constructor() {
@@ -24,16 +24,16 @@ export class Twitch {
         if (error.response.status === 401 && !config._retry) {
           config._retry = true;
 
-          const authorization = config.headers['authorization'] || '';
+          const authorization = config.headers["authorization"] || "";
 
-          const access_token = authorization.split(' ')?.[1];
+          const access_token = authorization.split(" ")?.[1];
 
           const profile = await prisma.account.findFirst({
             where: { access_token },
           });
 
           if (!profile) {
-            return Promise.reject('Profile not found');
+            return Promise.reject("Profile not found");
           }
 
           const newAccessToken = await this.refreshToken(profile.userId);
@@ -57,33 +57,33 @@ export class Twitch {
       where: { userId },
     });
 
-    return profile?.access_token || '';
+    return profile?.access_token || "";
   }
 
   async refreshToken(userId: string) {
-    console.log('refreshToken', userId);
+    console.log("refreshToken", userId);
     const profile = await prisma.account.findFirst({
-      where: { userId, provider: 'twitch' },
+      where: { userId, provider: "twitch" },
     });
 
     if (!profile) {
-      return Promise.reject('Profile not found');
+      return Promise.reject("Profile not found");
     }
 
     const { refresh_token } = profile;
     const { clientID, clientSecret } = twitchConfig;
 
     const res = await axios.post(
-      'https://id.twitch.tv/oauth2/token',
+      "https://id.twitch.tv/oauth2/token",
       querystring.stringify({
-        grant_type: 'refresh_token',
+        grant_type: "refresh_token",
         client_id: clientID,
         client_secret: clientSecret,
         refresh_token,
       }),
       {
         headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
+          "Content-Type": "application/x-www-form-urlencoded",
         },
       }
     );
@@ -91,7 +91,7 @@ export class Twitch {
     const accessToken = res?.data?.access_token;
 
     if (!accessToken) {
-      throw new Error('fail');
+      throw new Error("fail");
     }
 
     await prisma.account.update({
@@ -109,18 +109,18 @@ export class Twitch {
     });
 
     if (!profile) {
-      return Promise.reject('Profile not found');
+      return Promise.reject("Profile not found");
     }
 
     try {
       const { access_token } = profile;
 
       const headers: any = {
-        'Client-ID': twitchConfig.clientID,
+        "Client-ID": twitchConfig.clientID,
       };
 
       if (profile) {
-        headers['Authorization'] = `Bearer ${access_token}`;
+        headers["Authorization"] = `Bearer ${access_token}`;
       }
 
       return await axios.get(`https://api.twitch.tv/helix/${path}`, {
@@ -129,7 +129,7 @@ export class Twitch {
       });
     } catch (error) {
       console.log(error);
-      throw 'Helix Get Error';
+      throw "Helix Get Error";
     }
   }
 
@@ -142,14 +142,14 @@ export class Twitch {
     started_at?: string;
     ended_at?: string;
   }) {
-    const query = await this.helixGet('clips', params);
+    const query = await this.helixGet("clips", params);
     return query.data;
   }
 
-  async follows(params: { from_id?: string }, userId: string) {
-    const query = await this.helixGet('users/follows', params, userId);
-    return query.data;
-  }
+  // async follows(params: { from_id?: string }, userId: string) {
+  //   const query = await this.helixGet('users/follows', params, userId);
+  //   return query.data;
+  // }
 }
 
 export const twitch = new Twitch();

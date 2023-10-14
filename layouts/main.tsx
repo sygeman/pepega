@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import React, { useState } from "react";
 import { AuthModal } from "./auth-modal";
-import { Follows } from "../components/follows";
+// import { Follows } from "../components/follows";
 import { CreateClipModal } from "../components/clip/create-modal";
 import { ClipModal } from "../components/clip/modal";
 import { UserBox } from "./user";
@@ -34,7 +34,7 @@ export const MainLayout = ({ children }: MainLayoutProps) => {
               >
                 <div className="flex flex-col w-full flex-1">
                   <Logo />
-                  {isUser && <Follows />}
+                  {/* {isUser && <Follows />} */}
                 </div>
 
                 <UserBox />
