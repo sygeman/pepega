@@ -6,7 +6,8 @@
     "dev": "next dev -p 4200",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "generate": "prisma generate"
   },
   "dependencies": {
     "@headlessui/react": "1.7.17",
