@@ -1,6 +1,6 @@
 import clsx from "clsx";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+// import { useRouter } from "next/navigation";
 import React from "react";
 
 export const LeftMenuItem = ({
@@ -14,11 +14,12 @@ export const LeftMenuItem = ({
   icon: React.ReactNode;
   equal?: boolean;
 }) => {
-  const router = useRouter();
+  // const router = useRouter();
 
-  const active = equal
-    ? router.route === route
-    : router.route.search(`${route}`) >= 0;
+  const active = false;
+  // const active = equal
+  //   ? router.route === route
+  //   : router.route.search(`${route}`) >= 0;
 
   return (
     <Link

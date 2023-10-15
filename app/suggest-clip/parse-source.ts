@@ -17,7 +17,7 @@ const isTwitchClip = (sourceUrl: string) => {
     'https://www.twitch.tv/[^/]+/clip/([^\\/?"]+)',
   ];
 
-  let result: any = null;
+  let result: any;
 
   for (const regexp of regexps) {
     const regexpResult = sourceUrl.match(regexp);
@@ -42,8 +42,8 @@ const allMethods: any = {
   isTwitchClip,
 };
 
-export const parseSource = (sourceUrl: string): ISource | null => {
-  let result = null;
+export const parseSource = (sourceUrl: string): ISource | undefined => {
+  let result;
 
   for (const methodName of Object.keys(allMethods)) {
     const methodResult = allMethods[methodName](sourceUrl);

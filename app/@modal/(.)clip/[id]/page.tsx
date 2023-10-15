@@ -1,7 +1,9 @@
+import { ClipModal } from "./clip-modal";
+
 export default function PhotoModal({
   params: { id: clipId },
 }: {
   params: { id: string };
 }) {
-  return `Clip Modal ${clipId}`;
+  return <ClipModal clipId={clipId} />;
 }
