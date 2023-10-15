@@ -32,7 +32,7 @@ export const Clip: FC<ClipProperties> = ({ clipId = "", autoPlay }) => {
 
   return (
     <div className="flex flex-col flex-1 bg-surface rounded overflow-hidden">
-      <div className="bg-background">
+      <div className="bg-background aspect-video">
         <TwitchClipPlayer sourceId={clipId} autoPlay={autoPlay} />
       </div>
       <div className="flex py-3">
