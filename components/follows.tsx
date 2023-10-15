@@ -1,19 +1,18 @@
-import Link from "next/link";
 import Image from "next/image";
-import { OverlayScrollbarsComponent } from "overlayscrollbars-react";
-import { trpc } from "../utils/trpc";
+import Link from "next/link";
 
 export function Follows() {
-  const { data } = trpc.follow.list.useQuery(undefined, {
-    refetchOnWindowFocus: false,
-    staleTime: Infinity,
-  });
+  //   const { data } = useQuery(undefined, {
+  //     refetchOnWindowFocus: false,
+  //     staleTime: Number.POSITIVE_INFINITY,
+  //   });
 
-  const channels: any[] = data || [];
+  //   const channels: any[] = data || [];
+  const channels: any[] = [];
 
   return (
     <div className="flex flex-1 w-full">
-      <OverlayScrollbarsComponent className="w-full text-sm font-medium">
+      <div className="w-full text-sm font-medium">
         {channels.map((channel: any) => (
           <Link
             key={channel.id}
@@ -32,7 +31,7 @@ export function Follows() {
             <div>{channel.display_name}</div>
           </Link>
         ))}
-      </OverlayScrollbarsComponent>
+      </div>
     </div>
   );
 }

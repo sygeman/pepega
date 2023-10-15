@@ -1,20 +1,17 @@
-import React, { Fragment, useRef } from "react";
-import { Dialog, Transition } from "@headlessui/react";
+"use client";
 
-export type ModalProps = {
+import { Dialog, Transition } from "@headlessui/react";
+import React, { Fragment, type ReactNode, useRef } from "react";
+
+type ModalProperties = {
   id: string;
   isOpen: (id: string) => boolean;
   onClose: (id: string) => void;
-  children?: React.ReactNode;
+  children?: ReactNode;
 };
 
-export const Modal: React.FC<ModalProps> = ({
-  id,
-  isOpen,
-  onClose,
-  children,
-}) => {
-  const completeButtonRef = useRef(null);
+export const Modal = ({ id, isOpen, onClose, children }: ModalProperties) => {
+  const completeButtonReference = useRef(null);
   const open = isOpen(id);
   const close = () => onClose(id);
 
@@ -26,7 +23,7 @@ export const Modal: React.FC<ModalProps> = ({
         static
         open={open}
         onClose={close}
-        initialFocus={completeButtonRef}
+        initialFocus={completeButtonReference}
       >
         <Dialog.Overlay className="fixed inset-0 bg-background opacity-90" />
         <Transition.Child

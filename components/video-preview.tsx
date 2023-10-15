@@ -1,12 +1,12 @@
 import React from "react";
 
-export interface VideoPreviewProps {
+export interface VideoPreviewProperties {
   onClick?: () => void;
   cover?: string;
   date?: string;
 }
 
-export const VideoPreview: React.FC<VideoPreviewProps> = ({
+export const VideoPreview: React.FC<VideoPreviewProperties> = ({
   onClick,
   cover,
   date,

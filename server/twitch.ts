@@ -1,17 +1,14 @@
-import * as querystring from "querystring";
-import axios from "axios";
-import { prisma } from "./prisma";
+import * as querystring from "node:querystring";
 
-const twitchConfig = {
-  clientID: process.env.TWITCH_ID,
-  clientSecret: process.env.TWITCH_SECRET,
-  callbackURL: `${process.env.API_URL}authend/twitch`,
-  scope: "user:read:email user:read:follows",
-};
+import axios from "axios";
+
+import { twitchConfig } from "@/config/twitch";
+
+import { prisma } from "./prisma";
 
 export class Twitch {
   headers = {
-    "Client-ID": twitchConfig.clientID,
+    "Client-ID": twitchConfig.clientId,
     Accept: "application/vnd.twitchtv.v5+json",
   };
 
@@ -33,7 +30,7 @@ export class Twitch {
           });
 
           if (!profile) {
-            return Promise.reject("Profile not found");
+            throw "Profile not found";
           }
 
           const newAccessToken = await this.refreshToken(profile.userId);
@@ -47,7 +44,7 @@ export class Twitch {
           });
         }
 
-        return Promise.reject(error);
+        throw error;
       }
     );
   }
@@ -67,17 +64,17 @@ export class Twitch {
     });
 
     if (!profile) {
-      return Promise.reject("Profile not found");
+      throw "Profile not found";
     }
 
     const { refresh_token } = profile;
-    const { clientID, clientSecret } = twitchConfig;
+    const { clientId, clientSecret } = twitchConfig;
 
     const res = await axios.post(
       "https://id.twitch.tv/oauth2/token",
       querystring.stringify({
         grant_type: "refresh_token",
-        client_id: clientID,
+        client_id: clientId,
         client_secret: clientSecret,
         refresh_token,
       }),
@@ -102,21 +99,21 @@ export class Twitch {
     return accessToken;
   }
 
-  async helixGet(path: string, params: any, userId?: string) {
+  async helixGet(path: string, parameters: any, userId?: string) {
     const profile = await prisma.account.findFirst({
       select: { access_token: true },
       where: userId ? { userId } : { NOT: { access_token: null } },
     });
 
     if (!profile) {
-      return Promise.reject("Profile not found");
+      throw "Profile not found";
     }
 
     try {
       const { access_token } = profile;
 
       const headers: any = {
-        "Client-ID": twitchConfig.clientID,
+        "Client-ID": twitchConfig.clientId,
       };
 
       if (profile) {
@@ -125,7 +122,7 @@ export class Twitch {
 
       return await axios.get(`https://api.twitch.tv/helix/${path}`, {
         headers,
-        params,
+        params: parameters,
       });
     } catch (error) {
       console.log(error);
@@ -133,7 +130,7 @@ export class Twitch {
     }
   }
 
-  async clips(params: {
+  async clips(parameters: {
     broadcaster_id?: string;
     game_id?: string;
     id?: string;
@@ -142,7 +139,7 @@ export class Twitch {
     started_at?: string;
     ended_at?: string;
   }) {
-    const query = await this.helixGet("clips", params);
+    const query = await this.helixGet("clips", parameters);
     return query.data;
   }
 
