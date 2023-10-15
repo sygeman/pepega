@@ -6,7 +6,6 @@ import cn from "clsx";
 import { type PropsWithChildren, ReactNode, useState } from "react";
 
 import { AuthModal } from "./auth-modal";
-// import { ClipModal } from "./clip-modal/clip-modal";
 import { roboto } from "./fonts";
 import { Logo } from "./logo";
 import { Providers } from "./provider";
@@ -29,7 +28,6 @@ const MainLayout = ({ children, modal }: Properties) => {
           <div className="flex flex-col h-full overflow-hidden relative">
             <div className="absolute top-0 left-0 w-full h-full" />
             <div className="absolute top-0 left-0 w-full h-full bg-background/95">
-              {/* <ClipModal /> */}
               <SuggestClip />
               <AuthModal />
               <div className="relative w-full h-full overflow-hidden flex flex-col">
@@ -48,7 +46,6 @@ const MainLayout = ({ children, modal }: Properties) => {
                       <UserBox />
                     </div>
                     <div
-                      id="layoutContent"
                       className={cn(
                         "flex flex-col w-full transition-all delay-150 sm:pl-[240px]"
                       )}

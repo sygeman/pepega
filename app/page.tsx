@@ -1,5 +1,4 @@
 import { Clips } from "@/components/clips";
-import { clipListQueryAction } from "@/server/actions/clip";
 import { prisma } from "@/server/prisma";
 
 const IndexPage = async () => {
