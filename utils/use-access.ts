@@ -1,14 +1,5 @@
 import { useSession } from "next-auth/react";
 
-interface IProfile {
-  id: string;
-  name: string;
-  avatar: string;
-  serviceName: string;
-  serviceId: string;
-  visible: boolean;
-}
-
 interface IUser {
   id: string;
   role?: string;
