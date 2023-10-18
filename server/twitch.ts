@@ -142,11 +142,6 @@ export class Twitch {
     const query = await this.helixGet("clips", parameters);
     return query.data;
   }
-
-  // async follows(params: { from_id?: string }, userId: string) {
-  //   const query = await this.helixGet('users/follows', params, userId);
-  //   return query.data;
-  // }
 }
 
 export const twitch = new Twitch();

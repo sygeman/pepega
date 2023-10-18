@@ -5,6 +5,8 @@ import "./globals.css";
 import cn from "clsx";
 import { type PropsWithChildren, ReactNode, useState } from "react";
 
+import { Follows } from "@/components/follows";
+
 import { AuthModal } from "./auth-modal";
 import { roboto } from "./fonts";
 import { Logo } from "./logo";
@@ -12,9 +14,12 @@ import { Providers } from "./provider";
 import { SuggestClip } from "./suggest-clip/suggest-clip";
 import { UserBox } from "./user";
 
-type Properties = PropsWithChildren & { modal?: ReactNode };
+type Properties = PropsWithChildren & {
+  modal?: ReactNode;
+  follows?: ReactNode;
+};
 
-const MainLayout = ({ children, modal }: Properties) => {
+const MainLayout = ({ children, modal, follows }: Properties) => {
   const [leftMenuIsOpen, setLeftMenuIsOpen] = useState(false);
 
   return (
@@ -41,6 +46,7 @@ const MainLayout = ({ children, modal }: Properties) => {
                     >
                       <div className="flex flex-col w-full flex-1">
                         <Logo />
+                        {follows}
                       </div>
 
                       <UserBox />
