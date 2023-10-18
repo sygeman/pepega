@@ -5,12 +5,10 @@ import { usePathname, useSearchParams } from "next/navigation";
 import { useMemo } from "react";
 
 import { Button } from "@/components/button";
-import { useAccess } from "@/utils/use-access";
 
-export const AddClip = () => {
+export const AddClip = ({ isUser }: { isUser: boolean }) => {
   const searchParameters = useSearchParams();
   const pathname = usePathname();
-  const [{ allow: isUser, loading }] = useAccess();
 
   const addClipLink = useMemo(() => {
     const nextParameters = new URLSearchParams([...searchParameters.entries()]);
@@ -23,8 +21,6 @@ export const AddClip = () => {
 
     return `${pathname}?${nextParameters?.toString()}`;
   }, [isUser, searchParameters, pathname]);
-
-  if (loading) return;
 
   return (
     <div className="flex w-full px-4">

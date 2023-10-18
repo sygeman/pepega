@@ -3,12 +3,7 @@ import { signOut, useSession } from "next-auth/react";
 
 import { Avatar } from "@/components/avatar";
 
-export const User = () => {
-  const { data } = useSession();
-  const user = data?.user;
-
-  if (!user) return;
-
+export const User = ({ user }: { user: any }) => {
   return (
     <div className="h-10 flex items-center bg-surface/50">
       <div className="px-4">

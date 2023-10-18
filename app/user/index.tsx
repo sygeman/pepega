@@ -2,21 +2,15 @@
 
 import { signIn } from "next-auth/react";
 
-import { useAccess } from "@/utils/use-access";
-
 import { AddClip } from "./add-clip";
 import { Coins } from "./coins";
 import { User } from "./user";
 
-export const UserBox = () => {
-  const [{ allow: isUser, loading }] = useAccess();
-
-  if (loading) return;
-
-  if (!isUser) {
+export const UserBox = ({ user }: { user: any }) => {
+  if (!user) {
     return (
       <>
-        <AddClip />
+        <AddClip isUser={!!user} />
         <button
           className="p-2 text-sm text-white/75 flex items-center justify-center w-full uppercase hover:bg-surface"
           onClick={() => signIn("twitch")}
@@ -29,9 +23,9 @@ export const UserBox = () => {
 
   return (
     <>
-      <AddClip />
+      <AddClip isUser={!!user} />
       <Coins />
-      <User />
+      <User user={user} />
     </>
   );
 };
