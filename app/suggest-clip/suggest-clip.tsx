@@ -3,11 +3,11 @@
 import { useRouter } from "next/navigation";
 import { useCallback, useState } from "react";
 
-import { Button } from "@/components/button";
 import { CoinIconGold } from "@/components/coin-icon";
 import { Input } from "@/components/input";
 import { Modal } from "@/components/modal";
 import { TwitchClipPlayer } from "@/components/twitch-clip-player";
+import { Button } from "@/components/ui/button";
 import { CHANGE_SCORE_COST } from "@/server/actions/clip-score/constants";
 import { increaseClipScoreMutationAction } from "@/server/actions/clip-score/increase";
 import { useModal } from "@/utils/use-modal";
@@ -43,7 +43,7 @@ export const SuggestClip = () => {
               <CoinIconGold /> {CHANGE_SCORE_COST}
             </div>
           )}
-          <Button variant="primary" onClick={increaseClipScore}>
+          <Button variant="default" size="sm" onClick={increaseClipScore}>
             Предложить
           </Button>
         </div>

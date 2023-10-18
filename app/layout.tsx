@@ -45,7 +45,7 @@ const MainLayout = async ({ children, modal }: Properties) => {
                       )}
                     >
                       <Logo />
-                      {user && <Follows follows={follows} />}
+                      <Follows follows={follows} />
                       <UserBox user={user} />
                     </div>
                     <div

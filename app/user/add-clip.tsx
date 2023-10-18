@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
 import { useMemo } from "react";
 
-import { Button } from "@/components/button";
+import { Button } from "@/components/ui/button";
 
 export const AddClip = ({ isUser }: { isUser: boolean }) => {
   const searchParameters = useSearchParams();
@@ -25,7 +25,7 @@ export const AddClip = ({ isUser }: { isUser: boolean }) => {
   return (
     <div className="flex w-full px-4">
       <Link href={addClipLink} passHref className="w-full">
-        <Button variant="primary" className="w-full">
+        <Button variant="default" className="w-full" size="sm">
           Предложить клип
         </Button>
       </Link>
