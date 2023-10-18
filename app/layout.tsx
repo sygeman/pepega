@@ -23,12 +23,12 @@ const MainLayout = async ({ children, modal }: Properties) => {
   const follows = await getFollows(user?.id);
 
   return (
-    <html className={roboto.className}>
+    <html className={`${roboto.className} dark`}>
       <head>
         <title>PepegaCom</title>
         <link rel="icon" type="image/png" href="/favicon.png" />
       </head>
-      <body>
+      <body className="absolute w-full h-full">
         <Providers>
           <div className="flex flex-col h-full overflow-hidden relative">
             <div className="absolute top-0 left-0 w-full h-full" />
@@ -40,15 +40,12 @@ const MainLayout = async ({ children, modal }: Properties) => {
                   <div className="h-full flex">
                     <div
                       className={cn(
-                        "w-[240px] flex flex-col absolute top-0 h-full z-[100] transition-all delay-150 bg-surface",
+                        "w-[240px] flex flex-col absolute top-0 h-full bg-surface",
                         "left-0"
                       )}
                     >
-                      <div className="flex flex-col w-full flex-1">
-                        <Logo />
-                        {user && <Follows follows={follows} />}
-                      </div>
-
+                      <Logo />
+                      {user && <Follows follows={follows} />}
                       <UserBox user={user} />
                     </div>
                     <div
