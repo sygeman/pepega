@@ -1,16 +1,14 @@
 import "./globals.css";
 
 import cn from "clsx";
-import { type PropsWithChildren, ReactNode, useState } from "react";
+import { type PropsWithChildren, ReactNode } from "react";
 
-import { prisma } from "@/server/prisma";
-import { twitch } from "@/server/twitch";
-import { Follower } from "@/types/follower";
 import { getCurretUser } from "@/utils/get-current-user";
 
 import { AuthModal } from "./auth-modal";
 import { Follows } from "./follows";
 import { roboto } from "./fonts";
+import { getFollows } from "./helpers/get-follows";
 import { Logo } from "./logo";
 import { Providers } from "./provider";
 import { SuggestClip } from "./suggest-clip/suggest-clip";
@@ -22,25 +20,7 @@ type Properties = PropsWithChildren & {
 
 const MainLayout = async ({ children, modal }: Properties) => {
   const user = await getCurretUser();
-  let channels: Follower[] = [];
-
-  if (user) {
-    const account = await prisma.account.findFirst({
-      where: { userId: user.id },
-    });
-
-    if (!account) throw "Account not found";
-
-    const twitchId = account.providerAccountId;
-
-    const query = await twitch.helixGet(
-      "channels/followed",
-      { user_id: twitchId, first: 100 },
-      user.id
-    );
-
-    channels = query?.data?.data;
-  }
+  const follows = await getFollows(user?.id);
 
   return (
     <html className={roboto.className}>
@@ -66,7 +46,7 @@ const MainLayout = async ({ children, modal }: Properties) => {
                     >
                       <div className="flex flex-col w-full flex-1">
                         <Logo />
-                        {user && <Follows channels={channels} />}
+                        {user && <Follows follows={follows} />}
                       </div>
 
                       <UserBox user={user} />

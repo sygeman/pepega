@@ -67,10 +67,10 @@ export class Twitch {
       throw "Profile not found";
     }
 
-    const { refresh_token } = profile;
+    const { id, refresh_token } = profile;
     const { clientId, clientSecret } = twitchConfig;
 
-    const res = await axios.post(
+    const result = await axios.post(
       "https://id.twitch.tv/oauth2/token",
       querystring.stringify({
         grant_type: "refresh_token",
@@ -85,14 +85,14 @@ export class Twitch {
       }
     );
 
-    const accessToken = res?.data?.access_token;
+    const accessToken = result?.data?.access_token;
 
     if (!accessToken) {
       throw new Error("fail");
     }
 
     await prisma.account.update({
-      where: { id: profile.id },
+      where: { id },
       data: { access_token: accessToken },
     });
 
