@@ -5,8 +5,6 @@ import "./globals.css";
 import cn from "clsx";
 import { type PropsWithChildren, ReactNode, useState } from "react";
 
-import { Follows } from "@/components/follows";
-
 import { AuthModal } from "./auth-modal";
 import { roboto } from "./fonts";
 import { Logo } from "./logo";
