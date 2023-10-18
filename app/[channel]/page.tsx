@@ -1,14 +1,14 @@
-// import { useRouter } from "next/navigation";
+import { Clips } from "@/components/clips";
+import { twitch } from "@/server/twitch";
 
-// import { Clips } from "@/components/clips";
+const ChannelPage = async ({
+  params: { channel },
+}: {
+  params: { channel: string };
+}) => {
+  const clips = await twitch.clips({ broadcaster_id: channel });
 
-const ChannelPage = () => {
-  // const { query } = useRouter();
-  // const userId =
-  //   typeof query?.channel === "string" ? query?.channel : undefined;
-
-  // return <Clips userId={userId} />;
-  return;
+  return <Clips clips={clips.data} />;
 };
 
 export default ChannelPage;
