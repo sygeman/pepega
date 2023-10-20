@@ -6,7 +6,9 @@ import { type PropsWithChildren, ReactNode } from "react";
 import { getCurretUser } from "@/utils/get-current-user";
 
 import { AuthModal } from "./auth-modal";
+import { Follows } from "./follows";
 import { roboto } from "./fonts";
+import { getFollows } from "./helpers/get-follows";
 import { Logo } from "./logo";
 import { Providers } from "./provider";
 import { SuggestClip } from "./suggest-clip/suggest-clip";
@@ -14,11 +16,11 @@ import { UserBox } from "./user";
 
 type Properties = PropsWithChildren & {
   modal?: ReactNode;
-  follows?: ReactNode;
 };
 
-const MainLayout = async ({ children, modal, follows }: Properties) => {
+const MainLayout = async ({ children, modal }: Properties) => {
   const user = await getCurretUser();
+  const follows = await getFollows(user?.id);
 
   return (
     <html className={`${roboto.className} dark`}>
@@ -43,7 +45,7 @@ const MainLayout = async ({ children, modal, follows }: Properties) => {
                       )}
                     >
                       <Logo />
-                      {follows}
+                      <Follows follows={follows} />
                       <UserBox user={user} />
                     </div>
                     <div className={cn("flex flex-col w-full md:pl-60")}>
