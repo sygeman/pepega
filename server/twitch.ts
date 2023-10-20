@@ -49,14 +49,6 @@ export class Twitch {
     );
   }
 
-  async getToken(userId: string) {
-    const profile = await prisma.account.findFirst({
-      where: { userId },
-    });
-
-    return profile?.access_token || "";
-  }
-
   async refreshToken(userId: string) {
     console.log("refreshToken", userId);
     const profile = await prisma.account.findFirst({

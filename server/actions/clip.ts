@@ -57,9 +57,7 @@ export const clipListQueryAction = async (
     return { clips, cursor };
   }
 
-  const clipsQuery = await twitch.helixGet("clips", {
-    broadcaster_id: input.userId,
-  });
+  const clipsQuery = await twitch.clips({ broadcaster_id: input.userId });
 
   const clips: ClipFromTwitch[] = clipsQuery.data.data || [];
 
