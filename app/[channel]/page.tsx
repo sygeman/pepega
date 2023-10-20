@@ -3,6 +3,7 @@ import { subDays, subHours } from "date-fns";
 import { Avatar } from "@/components/avatar";
 import { Clips } from "@/components/clips";
 import { twitch } from "@/server/twitch";
+import { User } from "@/types/follower";
 
 import { RangeFilter } from "./range-filter";
 
@@ -25,15 +26,22 @@ const ChannelPage = async ({
       ? rangeFilter[range]()
       : undefined;
 
-  const [channelQuery, clips] = await Promise.all([
-    twitch.helixGet("users", { id: channel }),
-    twitch.clips({ broadcaster_id: channel, started_at }),
-  ]);
+  const broadcasterParameters = new URLSearchParams();
+  broadcasterParameters.set("login", channel);
+  const broadcasterQuery = await twitch.helixGet(
+    "users",
+    broadcasterParameters
+  );
 
-  const channelData = channelQuery?.data?.data?.[0];
+  const channelData: User = broadcasterQuery?.data?.data?.[0];
   const login = channelData?.login;
   const title = channelData?.display_name;
   const image = channelData?.profile_image_url;
+
+  const clips = await twitch.clips({
+    broadcaster_id: channelData.id,
+    started_at,
+  });
 
   return (
     <div className="h-full">

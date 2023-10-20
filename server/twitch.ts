@@ -91,7 +91,7 @@ export class Twitch {
     return accessToken;
   }
 
-  async helixGet(path: string, parameters: any, userId?: string) {
+  async helixGet(path: string, parameters: URLSearchParams, userId?: string) {
     const profile = await prisma.account.findFirst({
       select: { access_token: true },
       where: userId ? { userId } : { NOT: { access_token: null } },
@@ -130,12 +130,15 @@ export class Twitch {
     started_at?: string;
     ended_at?: string;
   }) {
-    const query = await this.helixGet(
-      "clips",
-      Object.fromEntries(
-        Object.entries(parameters).filter(([_, v]) => v != null)
-      )
-    );
+    const formatedParameters = new URLSearchParams();
+
+    for (const [key, value] of Object.entries(parameters)) {
+      if (value !== undefined) {
+        formatedParameters.set(key, value.toString());
+      }
+    }
+
+    const query = await this.helixGet("clips", formatedParameters);
     return query.data;
   }
 }
