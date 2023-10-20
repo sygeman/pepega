@@ -3,7 +3,8 @@
   "rules": {
     "simple-import-sort/imports": "error",
     "simple-import-sort/exports": "error",
-    "unicorn/no-keyword-prefix": "off"
+    "unicorn/no-keyword-prefix": "off",
+    "unicorn/no-null": "off"
   },
   "plugins": ["simple-import-sort"]
 }
