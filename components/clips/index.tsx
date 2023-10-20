@@ -7,7 +7,7 @@ import { dateDistanceInWordsToNow } from "./date";
 import { VideoPreview } from "./video-preview";
 
 export const Clips = ({ clips }: { clips: any[] }) => (
-  <ScrollArea>
+  <ScrollArea className="h-full">
     <div
       className={cn(
         "w-full p-4 grid auto-rows-max gap-2 justify-center",

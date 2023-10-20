@@ -25,7 +25,7 @@ export const CardMedia = ({
     <div className="relative w-full aspect-video bg-surface/50">{media}</div>
     <div className="flex bg-surface w-full h-12 px-1 text-sm">
       <div
-        className="flex flex-1 h-full items-center px-2 truncate"
+        className="flex flex-1 h-full text-sm items-center px-2 truncate"
         title={title}
       >
         {title}
