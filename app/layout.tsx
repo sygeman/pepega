@@ -40,29 +40,19 @@ const MainLayout = async ({ children, modal }: Properties) => {
                   <div className="h-full flex">
                     <div
                       className={cn(
-                        "w-[240px] flex flex-col absolute top-0 h-full bg-surface",
-                        "left-0"
+                        "w-60 flex-col absolute top-0 h-full bg-surface",
+                        "left-0 hidden md:flex"
                       )}
                     >
                       <Logo />
                       <Follows follows={follows} />
                       <UserBox user={user} />
                     </div>
-                    <div
-                      className={cn(
-                        "flex flex-col w-full transition-all delay-150 sm:pl-[240px]"
-                      )}
-                    >
+                    <div className={cn("flex flex-col w-full md:pl-60")}>
                       {children}
                       {modal}
                     </div>
                   </div>
-                  <div
-                    className={cn(
-                      "absolute left-0 top-0 w-full h-full z-50 bg-background/95 transition-all delay-150",
-                      "sm:hidden"
-                    )}
-                  />
                 </div>
               </div>
             </div>
