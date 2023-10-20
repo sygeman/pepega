@@ -116,9 +116,8 @@ export class Twitch {
         headers,
         params: parameters,
       });
-    } catch (error) {
-      console.log(error);
-      throw "Helix Get Error";
+    } catch (error: any) {
+      throw `Helix Get Error: ${error?.message}`;
     }
   }
 

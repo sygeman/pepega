@@ -16,7 +16,6 @@ export const getFollows = async (userId?: string): Promise<Follower[]> => {
   const twitchId = account.providerAccountId;
 
   try {
-    console.log({ twitchId, userId });
     const query = await twitch.helixGet(
       "channels/followed",
       { user_id: twitchId, first: 100 },
