@@ -7,13 +7,24 @@ export const getFollows = async (userId?: string): Promise<Follower[]> => {
 
   if (!userId) return channels;
 
-  const account = await prisma.account.findFirst({
-    where: { userId },
+  const user = await prisma.user.findFirst({
+    where: { id: userId },
+    include: { accounts: true },
   });
+
+  const account = user?.accounts?.[0];
 
   if (!account) throw "Account not found";
 
+  const userChannel: Follower = {
+    broadcaster_id: account.providerAccountId,
+    broadcaster_login: user?.name || "",
+    broadcaster_name: user?.name || "",
+    followed_at: "",
+  };
+
   const twitchId = account.providerAccountId;
+  let followers: Follower[] = [userChannel];
 
   try {
     const query = await twitch.helixGet(
@@ -22,8 +33,8 @@ export const getFollows = async (userId?: string): Promise<Follower[]> => {
       userId
     );
 
-    return query?.data?.data || [];
+    return [...followers, ...(query?.data?.data || [])];
   } catch {
-    return [];
+    return followers;
   }
 };
