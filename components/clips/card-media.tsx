@@ -1,25 +1,24 @@
 "use client";
 
+import { shortNumbers } from "@/utils/count";
 import { type ReactNode } from "react";
 
-import { shortNumbers } from "@/utils/count";
-
 interface CardMediaProperties {
-  media?: ReactNode;
   avatar?: string;
-  title?: string;
-  description?: string;
-  descriptionLink?: string;
-  overlay?: ReactNode;
   count?: number;
   countIcon?: ReactNode;
+  description?: string;
+  descriptionLink?: string;
+  media?: ReactNode;
+  overlay?: ReactNode;
+  title?: string;
 }
 
 export const CardMedia = ({
-  media,
-  title,
-  overlay,
   count = 0,
+  media,
+  overlay,
+  title,
 }: CardMediaProperties) => (
   <div className="flex flex-col items-center rounded overflow-hidden relative">
     <div className="relative w-full aspect-video bg-surface/50">{media}</div>

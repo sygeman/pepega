@@ -1,7 +1,6 @@
 "use client";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
-
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 export const RangeFilter = ({ value = "all" }) => {
   const searchParameters = useSearchParams();
@@ -15,7 +14,7 @@ export const RangeFilter = ({ value = "all" }) => {
   };
 
   return (
-    <Tabs value={value} onValueChange={onValueChange}>
+    <Tabs onValueChange={onValueChange} value={value}>
       <TabsList>
         <TabsTrigger value="24h">24 часа</TabsTrigger>
         <TabsTrigger value="7d">7 дней</TabsTrigger>

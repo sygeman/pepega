@@ -6,8 +6,8 @@ export const getFollows = async (userId?: string): Promise<User[]> => {
   if (!userId) return [];
 
   const user = await prisma.user.findFirst({
-    where: { id: userId },
     include: { accounts: true },
+    where: { id: userId },
   });
 
   const account = user?.accounts?.[0];

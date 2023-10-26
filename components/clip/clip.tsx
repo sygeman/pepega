@@ -1,9 +1,8 @@
 "use client";
 
+import { useAccess } from "@/utils/use-access";
 import dynamic from "next/dynamic";
 import { FC, useEffect } from "react";
-
-import { useAccess } from "@/utils/use-access";
 
 // import { ClipComments } from "../clip-comment";
 import { ClipScore } from "./clip-score";
@@ -15,11 +14,11 @@ const TwitchClipPlayer = dynamic(
 );
 
 export interface ClipProperties {
-  clipId?: string;
   autoPlay?: boolean;
+  clipId?: string;
 }
 
-export const Clip: FC<ClipProperties> = ({ clipId = "", autoPlay }) => {
+export const Clip: FC<ClipProperties> = ({ autoPlay, clipId = "" }) => {
   const [{ allow: isUser }] = useAccess();
 
   useEffect(() => {
@@ -33,7 +32,7 @@ export const Clip: FC<ClipProperties> = ({ clipId = "", autoPlay }) => {
   return (
     <div className="flex flex-col flex-1 bg-surface rounded overflow-hidden">
       <div className="bg-background aspect-video">
-        <TwitchClipPlayer sourceId={clipId} autoPlay={autoPlay} />
+        <TwitchClipPlayer autoPlay={autoPlay} sourceId={clipId} />
       </div>
       <div className="flex py-3">
         <ClipScore clipId={clipId} />

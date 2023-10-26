@@ -1,9 +1,8 @@
-import { subDays, subHours } from "date-fns";
-
 import { Avatar } from "@/components/avatar";
 import { Clips } from "@/components/clips";
 import { twitch } from "@/server/twitch";
 import { User } from "@/types/follower";
+import { subDays, subHours } from "date-fns";
 
 import { RangeFilter } from "./range-filter";
 
@@ -16,8 +15,8 @@ const ChannelPage = async ({
 }) => {
   const now = new Date();
   const rangeFilter: Record<string, () => string> = {
-    "24h": () => subHours(now, 24).toISOString(),
     "7d": () => subDays(now, 7).toISOString(),
+    "24h": () => subHours(now, 24).toISOString(),
     "30d": () => subDays(now, 30).toISOString(),
   };
 
@@ -52,8 +51,8 @@ const ChannelPage = async ({
             Клипы канала{" "}
             <a
               className="underline"
-              target="_blank"
               href={`https://www.twitch.tv/${login}`}
+              target="_blank"
             >
               {title}
             </a>

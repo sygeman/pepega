@@ -1,8 +1,5 @@
 "use client";
 
-import { useRouter } from "next/navigation";
-import { useCallback, useState } from "react";
-
 import { CoinIconGold } from "@/components/coin-icon";
 import { Input } from "@/components/input";
 import { Modal } from "@/components/modal";
@@ -11,6 +8,8 @@ import { Button } from "@/components/ui/button";
 import { CHANGE_SCORE_COST } from "@/server/actions/clip-score/constants";
 import { increaseClipScoreMutationAction } from "@/server/actions/clip-score/increase";
 import { useModal } from "@/utils/use-modal";
+import { useRouter } from "next/navigation";
+import { useCallback, useState } from "react";
 
 import { parseSource } from "./parse-source";
 
@@ -29,12 +28,12 @@ export const SuggestClip = () => {
       <div className="w-[600px] bg-surface p-4 rounded overflow-hidden">
         <Input
           autoFocus
-          placeholder="Ссылка на Twitch клип"
           onChange={(event) => {
             const soruceData = parseSource(event.target.value);
             if (!soruceData?.payload?.sourceId) return;
             setClipId(soruceData.payload.sourceId);
           }}
+          placeholder="Ссылка на Twitch клип"
         />
         {clipId && <TwitchClipPlayer sourceId={clipId} />}
         <div className="mt-5 flex justify-end">
@@ -43,7 +42,7 @@ export const SuggestClip = () => {
               <CoinIconGold /> {CHANGE_SCORE_COST}
             </div>
           )}
-          <Button variant="default" size="sm" onClick={increaseClipScore}>
+          <Button onClick={increaseClipScore} size="sm" variant="default">
             Предложить
           </Button>
         </div>

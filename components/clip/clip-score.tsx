@@ -1,13 +1,12 @@
 "use client";
 
-import Image from "next/image";
-import { signIn } from "next-auth/react";
-import React, { useCallback, useEffect, useState } from "react";
-
 import { clipScoreByIdQueryAction } from "@/server/actions/clip-score/by-id";
 import { decreaseClipScoreMutationAction } from "@/server/actions/clip-score/decrease";
 import { increaseClipScoreMutationAction } from "@/server/actions/clip-score/increase";
 import { useAccess } from "@/utils/use-access";
+import Image from "next/image";
+import { signIn } from "next-auth/react";
+import React, { useCallback, useEffect, useState } from "react";
 
 export interface ScoreButtonProperties {
   action: () => void;
@@ -61,13 +60,13 @@ export function ClipScore({ clipId }: ClipScoreProperties) {
   return (
     <div className="flex bg-background mx-2 rounded-lg overflow-hidden">
       <ScoreButton action={increaseClipScore}>
-        <Image src="/icons/plus-small.svg" alt="" height={16} width={16} />
+        <Image alt="" height={16} src="/icons/plus-small.svg" width={16} />
       </ScoreButton>
       <div className="flex px-4 -mx-2 z-10 items-center bg-twitch transition rounded-lg text-sm font-medium">
         {clipScore}
       </div>
       <ScoreButton action={decreaseClipScore}>
-        <Image src="/icons/minus-small.svg" alt="" height={16} width={16} />
+        <Image alt="" height={16} src="/icons/minus-small.svg" width={16} />
       </ScoreButton>
     </div>
   );

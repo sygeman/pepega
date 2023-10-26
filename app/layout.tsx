@@ -1,13 +1,11 @@
-import "./globals.css";
-
+import { getCurretUser } from "@/utils/get-current-user";
 import cn from "clsx";
 import { type PropsWithChildren, ReactNode } from "react";
-
-import { getCurretUser } from "@/utils/get-current-user";
 
 import { AuthModal } from "./auth-modal";
 import { Follows } from "./follows";
 import { roboto } from "./fonts";
+import "./globals.css";
 import { getFollows } from "./helpers/get-follows";
 import { Logo } from "./logo";
 import { Providers } from "./provider";
@@ -26,7 +24,7 @@ const MainLayout = async ({ children, modal }: Properties) => {
     <html className={`${roboto.className} dark`}>
       <head>
         <title>PepegaCom</title>
-        <link rel="icon" type="image/png" href="/favicon.png" />
+        <link href="/favicon.png" rel="icon" type="image/png" />
       </head>
       <body className="absolute w-full h-full">
         <Providers>

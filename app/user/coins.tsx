@@ -1,8 +1,7 @@
-import { useCallback, useEffect, useState } from "react";
-
 import { CoinIconGold } from "@/components/coin-icon";
 import { userCoinsQueryAction } from "@/server/actions/user-coins";
 import { humanNumbers, shortNumbers } from "@/utils/count";
+import { useCallback, useEffect, useState } from "react";
 
 export const Coins = () => {
   const [userCoins, setUserCoins] = useState(0);

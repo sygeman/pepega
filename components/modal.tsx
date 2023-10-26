@@ -4,26 +4,26 @@ import { Dialog, Transition } from "@headlessui/react";
 import React, { Fragment, type ReactNode, useRef } from "react";
 
 type ModalProperties = {
+  children?: ReactNode;
   id: string;
   isOpen: (id: string) => boolean;
   onClose: (id: string) => void;
-  children?: ReactNode;
 };
 
-export const Modal = ({ id, isOpen, onClose, children }: ModalProperties) => {
+export const Modal = ({ children, id, isOpen, onClose }: ModalProperties) => {
   const completeButtonReference = useRef(null);
   const open = isOpen(id);
   const close = () => onClose(id);
 
   return (
-    <Transition show={open} as={Fragment}>
+    <Transition as={Fragment} show={open}>
       <Dialog
         as="div"
         className="fixed inset-0 z-[150] overflow-y-auto min-h-screen w-full flex items-center justify-center"
-        static
-        open={open}
-        onClose={close}
         initialFocus={completeButtonReference}
+        onClose={close}
+        open={open}
+        static
       >
         <Dialog.Overlay className="fixed inset-0 bg-background opacity-90" />
         <Transition.Child

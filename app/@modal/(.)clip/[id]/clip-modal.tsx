@@ -1,9 +1,8 @@
 "use client";
 
-import { useRouter } from "next/navigation";
-
 import { Clip } from "@/components/clip/clip";
 import { Modal } from "@/components/modal";
+import { useRouter } from "next/navigation";
 
 export const ClipModal = ({ clipId }: { clipId: string }) => {
   const router = useRouter();
@@ -14,7 +13,7 @@ export const ClipModal = ({ clipId }: { clipId: string }) => {
         className="max-w-[1000px] min-w-[320px] w-[1000px] rounded overflow-hidden"
         onClick={(event) => event.stopPropagation()}
       >
-        <Clip clipId={clipId} autoPlay />
+        <Clip autoPlay clipId={clipId} />
       </div>
     </Modal>
   );

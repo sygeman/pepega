@@ -8,12 +8,12 @@ const removeClipComment = () => {
 };
 
 export const ClipComment = ({
-  id,
   content,
+  id,
   user,
 }: {
-  id: string;
   content: string;
+  id: string;
   user: any;
   userId: string;
 }) => {

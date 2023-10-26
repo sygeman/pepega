@@ -16,6 +16,7 @@ export const Clips = ({ clips }: { clips: any[] }) => (
     >
       {clips.map((clip) => (
         <CardMedia
+          count={clip?.score || 0}
           key={clip.id}
           media={
             <div className="absolute top-0 left-0 w-full h-full">
@@ -28,7 +29,6 @@ export const Clips = ({ clips }: { clips: any[] }) => (
             </div>
           }
           title={clip?.title}
-          count={clip?.score || 0}
         />
       ))}
     </div>

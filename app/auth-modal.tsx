@@ -1,11 +1,10 @@
 "use client";
 
-import Image from "next/image";
-import { signIn } from "next-auth/react";
-
 import { Modal } from "@/components/modal";
 import { Button } from "@/components/ui/button";
 import { useModal } from "@/utils/use-modal";
+import Image from "next/image";
+import { signIn } from "next-auth/react";
 
 export const AuthModal = () => {
   const modalProperties = useModal();
@@ -17,10 +16,10 @@ export const AuthModal = () => {
           <Button className="py-5" onClick={() => signIn("twitch")}>
             <Image
               alt=""
+              className="mr-2 h-6 opacity-90"
+              height={24}
               src="/icons/twitch.svg"
               width={24}
-              height={24}
-              className="mr-2 h-6 opacity-90"
             />
             <span className="text-white opacity-80 text-xs uppercase tracking-widest mx-5 text-center w-full">
               Login with Twitch

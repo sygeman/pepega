@@ -1,12 +1,12 @@
 interface IPayload {
   cover?: string;
-  sourceType?: string;
   sourceId?: string;
+  sourceType?: string;
 }
 
 interface ISource {
-  type: string;
   payload: IPayload;
+  type: string;
 }
 
 const isTwitchClip = (sourceUrl: string) => {
@@ -24,11 +24,11 @@ const isTwitchClip = (sourceUrl: string) => {
 
     if (regexpResult && regexpResult[1]) {
       result = {
-        type: "twitchClip",
         payload: {
           sourceId: regexpResult[1],
           sourceType: "twitchClip",
         },
+        type: "twitchClip",
       };
 
       break;

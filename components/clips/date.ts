@@ -18,5 +18,5 @@ export const dateDistanceInWordsToNow = (date: any) => {
 
   if (!numberDate) return "";
 
-  return formatDistanceToNow(numberDate, { locale, addSuffix: true });
+  return formatDistanceToNow(numberDate, { addSuffix: true, locale });
 };

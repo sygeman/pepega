@@ -1,7 +1,6 @@
+import { Avatar } from "@/components/avatar";
 import Image from "next/image";
 import { signOut, useSession } from "next-auth/react";
-
-import { Avatar } from "@/components/avatar";
 
 export const User = ({ user }: { user: any }) => {
   return (
@@ -16,7 +15,7 @@ export const User = ({ user }: { user: any }) => {
         className="hover:bg-background/50 p-2 mx-2 rounded-lg"
         onClick={() => signOut()}
       >
-        <Image src="/icons/exit.svg" height={16} width={16} alt="" />
+        <Image alt="" height={16} src="/icons/exit.svg" width={16} />
       </button>
     </div>
   );

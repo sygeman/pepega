@@ -1,8 +1,7 @@
 "use client";
 
-import { useRef } from "react";
-
 import { useAccess } from "@/utils/use-access";
+import { useRef } from "react";
 
 export const ClipCommentBottom = ({ clipId }: { clipId: string }) => {
   const textInput = useRef<HTMLInputElement>(null);
@@ -23,14 +22,7 @@ export const ClipCommentBottom = ({ clipId }: { clipId: string }) => {
       <input
         className="w-[calc(100%-20px)] px-4 h-8 bg-background rounded text-sm outline-none m-2"
         disabled={!isAllow}
-        ref={textInput}
         maxLength={500}
-        type="text"
-        placeholder={
-          isAllow
-            ? "Написать комментарий..."
-            : "Войдите чтобы писать комментарии"
-        }
         onKeyPress={(event) => {
           if (!textInput.current) return;
 
@@ -43,6 +35,13 @@ export const ClipCommentBottom = ({ clipId }: { clipId: string }) => {
             // });
           }
         }}
+        placeholder={
+          isAllow
+            ? "Написать комментарий..."
+            : "Войдите чтобы писать комментарии"
+        }
+        ref={textInput}
+        type="text"
       />
     </div>
   );

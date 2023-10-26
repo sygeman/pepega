@@ -1,15 +1,15 @@
 import React from "react";
 
 export interface VideoPreviewProperties {
-  onClick?: () => void;
   cover?: string;
   date?: string;
+  onClick?: () => void;
 }
 
 export const VideoPreview: React.FC<VideoPreviewProperties> = ({
-  onClick,
   cover,
   date,
+  onClick,
 }) => (
   <div className="aspect-video relative">
     <div className="absolute top-0 left-0 w-full h-full">
