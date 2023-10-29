@@ -1,9 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: true,
   images: {
     domains: ["static-cdn.jtvnw.net"],
   },
+  output: "standalone",
+  reactStrictMode: true,
 };
 
 module.exports = nextConfig;
