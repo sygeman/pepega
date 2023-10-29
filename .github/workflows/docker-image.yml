@@ -28,9 +28,9 @@ jobs:
       #     restore-keys: |
       #       ${{ runner.os }}-nextjs-${{ hashFiles('**/bun.lockb') }}-
 
-      - run: bun install
-      - run: npm run build
+      - run: bun install --production
+      - run: bun run build
 
-      - uses: actions/checkout@v3
-      - name: Build the Docker image
-        run: docker build . --file Dockerfile --tag pepega:bun
+      # - uses: actions/checkout@v3
+      # - name: Build the Docker image
+      #   run: docker build . --file Dockerfile --tag pepega:bun
