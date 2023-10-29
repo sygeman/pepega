@@ -17,7 +17,7 @@ WORKDIR /app
 
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
-RUN npm run build -- --no-lint
+RUN bun run build -- --no-lint
 
 FROM base as final
 
