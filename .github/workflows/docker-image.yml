@@ -29,4 +29,4 @@ jobs:
       #       ${{ runner.os }}-nextjs-${{ hashFiles('**/bun.lockb') }}-
 
       - run: bun install
-      - run: bun run build
+      - run: npm run build
