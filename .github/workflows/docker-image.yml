@@ -28,5 +28,5 @@ jobs:
       #     restore-keys: |
       #       ${{ runner.os }}-nextjs-${{ hashFiles('**/bun.lockb') }}-
 
-      - run: bun install
-      - run: bun run build
+      - run: npm install
+      - run: npm run build
