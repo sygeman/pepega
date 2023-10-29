@@ -13,9 +13,9 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
-      - uses: oven-sh/setup-bun@v1
         with:
           node-version: 18
+      - uses: oven-sh/setup-bun@v1
 
       # - name: Restore cache
       #   uses: actions/cache@v3
@@ -28,5 +28,5 @@ jobs:
       #     restore-keys: |
       #       ${{ runner.os }}-nextjs-${{ hashFiles('**/bun.lockb') }}-
 
-      - run: npm install
-      - run: npm run build
+      - run: bun install
+      - run: bun run build
