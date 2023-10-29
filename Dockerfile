@@ -1,33 +1,24 @@
-ARG BUN_VERSION=1.0.7
+# Install dependencies only when needed
+FROM node:20-alpine AS deps
+# Check https://github.com/nodejs/docker-node/tree/b4117f9333da4138b03a546ec926ef50a31506c3#nodealpine to understand why libc6-compat might be needed.
+RUN apk add --no-cache libc6-compat
 
-FROM oven/bun:${BUN_VERSION}-alpine as base
-
+FROM node:20-alpine AS runner
 WORKDIR /app
 
-ENV NODE_ENV=production
+ENV PORT 3000
+ENV NODE_ENV production
+ENV NEXT_TELEMETRY_DISABLED 1
 
-FROM base as deps
+RUN addgroup --system --gid 1001 nodejs
+RUN adduser --system --uid 1001 nextjs
 
-COPY package.json bun.lockb ./
-RUN bun install
+COPY --chown=nextjs:nodejs dist/@/.next/standalone ./
+COPY --chown=nextjs:nodejs dist/@/.next/static ./dist/@/.next/static
+COPY --chown=nextjs:nodejs dist/@/public ./@/public
 
-FROM oven/bun:${BUN_VERSION}-alpine as build
-
-WORKDIR /app
-
-COPY --from=deps /app/node_modules ./node_modules
-COPY . .
-RUN bun run build -- --no-lint
-
-FROM base as final
-
-USER bun
-
-COPY --from=build /app/package.json ./package.json
-COPY --from=build /app/node_modules ./node_modules
-COPY --from=build /app/.next ./.next
-COPY --from=build /app/public ./public
+USER nextjs
 
 EXPOSE 3000
 
-CMD ["bun", "run", "start"]
+CMD ["node", "@/server.js"]
